@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <title>Antapani Kidul</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 50px;
+            font-family: "Rubik", sans-serif;
+        }
+
+        .profile-header {
+            margin-top: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title_profil {
+            font-weight: bolder;
+        }
+
+
+        .loc_name{
+            font-size: 22px;
+            font-weight: bolder;
+        }
+
+        .box {
+            background-color: #f4f6f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            min-height: 200px;
+        }
+
+        .box-map{
+            margin-bottom: 25px;
+            min-height: 200px;
+        }
+
+        #map{
+            height:420px;
+        }
+
+        .custom-card {
+            display: flex;
+            overflow: hidden;
+            position: relative;  /* Tambahkan ini */
+            padding-bottom: 30px;  /* Tambahkan ini untuk memberi ruang pada tanggal */
+        }
+
+        .card-text {
+            margin-bottom: 0; margin-top: 0;   
+        }
+
+        .card-text-center{
+            align-content: center;
+            margin-bottom: 0; margin-top: 0;   
+        }
+
+        .card-title {
+            margin-bottom: 10px;
+        }
+
+        .card-title-center {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        .card-content-center{
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .card-date-container {
+            align-self: flex-end;
+            margin-top: auto;
+        }
+
+        .icon_color {
+            color: #02B3AF;
+        }
+
+        .bg-icon {
+            height: 90px;
+            width: 90px;
+            border: solid 1px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-color: white;
+            background-color: white;
+        }
+
+        .card-date {
+            position: absolute;  /* Positioning absolut */
+            bottom: 10px;  /* Jarak dari bawah */
+            right: 20px;  /* Jarak dari kanan */
+            font-size: 0.8em;
+            color: #6c757d;
+            margin: 0; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row profile-header ">
+            <div class="col-12 p-5 rounded-lg m-3" data-aos="fade-down">
+                <h2 class="title_profil">PROFIL DESA/KELURAHAN</h2>
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-lg-6">
+                        <span>Desa/Kelurahan</span>
+                        <p class="loc_name">ANTAPANI KIDUL</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <span>Kabupaten/Kota</span>
+                        <p class="loc_name">KOTA BANDUNG</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <span>Kecamatan</span>
+                        <p class="loc_name">ANTAPANI</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <span>Provinsi</span>
+                        <p class="loc_name">JAWA BARAT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-aos="fade-up">
+            <div class="col-12 col-md-8">
+                <div class="box-map">
+                    <div id="map"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="custom-card">
+                                <div class="icon-container">
+                                    <div class="bg-icon">
+                                        <i class="icon_color fas fa-home fa-3x"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h5 class="card-title">Indeks Desa Membangun</h5>
+                                    <p class="card-text"></p>
+                                    <p class="card-date">25 Juni 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="custom-card">
+                                <div class="icon-container">
+                                    <div class="bg-icon">
+                                        <i class="icon_color fab fa-nutritionix fa-3x"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h5 class="card-title">Status Stunting</h5>
+                                    <p class="card-text">Bukan Desa Prioritas Stunting</p>
+                                    <p class="card-date">Sumber: Kemendagri 2021</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box">
+                            <div class="custom-card">
+                                <div class="icon-container">
+                                    <div class="bg-icon">
+                                        <i class="icon_color fas fa-mountain fa-3x"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h5 class="card-title">Tipologi</h5>
+                                    <p class="card-text">Di Luar Kawasan Hutan</p>
+                                    <p class="card-date">Sumber: Podes 2021</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="box">
+                            <div class="custom-card">
+                                <div class="icon-container">
+                                    <div class="bg-icon">
+                                        <i class="icon_color fas fa-user fa-3x"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h5 class="card-title">Jumlah Penduduk</h5>
+                                    <p class="card-text">0 jiwa</p>
+                                    <p class="card-text">0 Laki-laki</p>
+                                    <p class="card-text">0 Perempuan</p>
+                                    <p class="card-date">Sumber: Regsosek 2021</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="box">
+                            <div class="custom-card">
+                                <div class="icon-container">
+                                    <div class="bg-icon">
+                                        <i class="icon_color fas fa-users fa-3x"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h5 class="card-title">Jumlah Keluarga</h5>
+                                    <p class="card-text">0 jiwa</p>
+                                    <p class="card-text">0 Laki-laki</p>
+                                    <p class="card-text">0 Perempuan</p>
+                                    <p class="card-date">Sumber: Regsosek 2021</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-aos="fade-up">
+            <div class="col-12 col-md-4">
+
+                    <div class="box">
+                        <div class="custom-card">
+                            <div class="icon-container">
+                                <div class="bg-icon">
+                                    <i class="icon_color fas fa-box-open fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="card-title">Produk Unggulan</h5>
+                                <p class="card-text">Kerajinan Barang Daur Ulang</p>
+                                <p class="card-text">Ada 1 Desa Yang Memiliki Produk Unggulan</p>
+                                <p class="card-date">Sumber: Regsosek 2021</p>
+                            </div>
+                        </div>
+                    </div>
+      
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="box">
+                    <div class="custom-card">
+                        <div class="card-content-center">
+                            <h5 class="card-title-center">Jumlah Penduduk Berdasarkan Usia</h5>
+                            <div class="row card-text">
+                                <div class="col-5 d-flex justify-content-center">
+                                    <div class="p-2">
+                                        <p class="fw-bold">0-6</p>
+                                        <p class="fw-bold">7-18</p>
+                                        <p class="fw-bold">19-24</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <p>0</p>
+                                        <p>0</p>
+                                        <p>0</p>
+                                    </div>                    
+                                </div>
+                                <div class="col-1 d-flex align-items-center justify-content-center">
+                                    <div class="vr"></div>
+                                </div>
+                                <div class="col-5 d-flex justify-content-center">
+                                    <div class="p-2">
+                                        <p class="fw-bold">25-40</p>
+                                        <p class="fw-bold">41-60</p>
+                                        <p class="fw-bold">> 60</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <p>0</p>
+                                        <p>0</p>
+                                        <p>0</p>
+                                    </div>   
+                                </div>
+                            </div>
+                            <p class="card-date">Sumber: Regsosek 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-aos="fade-up">
+            <div class="col-12 col-md-4">
+                <div class="box">
+                        <div class="custom-card">
+                            <div class="icon-container">
+                                <div class="bg-icon">
+                                    <i class="icon_color fas fa-coins fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="card-content"> 
+                                <h5 class="card-title">Sumber Penghasilan Utama</h5>
+                                <p class="card-text">Penyediaan Akomodasi dan Makan Minum</p>
+                                <p class="card-date">Sumber: Podes 2021</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="box">
+                    <div class="custom-card">
+                        <div class="card-content-center">
+                            <h5 class="card-title-center">Jumlah Penduduk Berdasarkan Disabilitas</h5>
+                            <div class="row card-text">
+                                <div class="col-5 d-flex justify-content-center">
+                                    <div class="p-2 text-end">
+                                        <p class="fw-bold">Netra</p>
+                                        <p class="fw-bold">Rungu</p>
+                                        <p class="fw-bold">Wicara</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <p>0</p>
+                                        <p>0</p>
+                                        <p>0</p>
+                                    </div>
+                                </div>
+                                <div class="col-1 d-flex align-items-center justify-content-center">
+                                    <div class="vr"></div>
+                                </div>
+                                <div class="col-5 d-flex justify-content-center">
+                                    <div class="p-2 text-end">
+                                        <p class="fw-bold">Fisik</p>
+                                        <p class="fw-bold">Mental</p>
+                                        <p class="fw-bold">Intelektual</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <p>0</p>
+                                        <p>0</p>
+                                        <p>0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-date">Sumber: Regsosek 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      var map = L.map("map").setView([-6.922500, 107.658527], 15);
+
+
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+    </script>
+</body>
+</html>
