@@ -18,6 +18,28 @@
             font-family: "Rubik", sans-serif;
         }
 
+        .row{
+                overflow: hidden; 
+            }
+
+            [class*="col-"]{
+                margin-bottom: -99999px;
+                padding-bottom: 99999px;
+            }
+
+        .leaflet-tooltip.my-labels {
+            background-color: transparent;
+            border: transparent;
+            box-shadow: none;
+            color: white;
+        }
+
+        .leaflet-tooltip.my-labels.active {
+            background-color: transparent;
+            color: white; /* Pastikan teks terlihat di latar belakang putih */
+            box-shadow: none;
+        }
+        
         .profile-header {
             margin-top: 20px;
             text-align: center;
@@ -36,18 +58,32 @@
 
         .box {
             background-color: #f4f6f9;
-            padding: 15px;
-            margin-bottom: 15px;
-            min-height: 200px;
+            padding-bottom: 30px;
+            padding-top: 30px;
+            padding-left: 25px;
+            padding-right: 25px;
+            margin-bottom: 25px;
+            margin-top: 25px;
+            min-height: 100px;
+        }
+
+        .box-map-side {
+            background-color: #f4f6f9;
+            padding-bottom: 30px;
+            padding-top: 30px;
+            padding-left: 25px;
+            padding-right: 25px;
+            margin-bottom: 25px;
+            min-height: 150px;
         }
 
         .box-map{
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             min-height: 200px;
         }
 
         #map{
-            height:420px;
+            height:480px;
         }
 
         .custom-card {
@@ -58,12 +94,13 @@
         }
 
         .card-text {
-            margin-bottom: 0; margin-top: 0;   
+            color: rgb(85, 85, 85);
+            margin-bottom: 5px; margin-top: 5px;   
         }
 
         .card-text-center{
             align-content: center;
-            margin-bottom: 0; margin-top: 0;   
+            margin-bottom: 5px; margin-top: 5px;   
         }
 
         .card-title {
@@ -82,7 +119,6 @@
         }
 
         .card-content {
-            padding: 20px;
             flex-grow: 1;
             text-align: right;
         }
@@ -122,10 +158,31 @@
             margin: 0; 
         }
 
+        .content { display: none; }
+        .preload {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px; /* half of height */
+            margin-left: -50px; /* half of width */
+            background: url('http://i.imgur.com/KUJoe.gif') no-repeat center center; 
+            background-size: contain;
+            z-index: 1000;
+        }
+
+        ul.no-bullets {
+            list-style-type: none;
+            padding: 0;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <div class="preload"> </div>
+    <div class="container content">
         <div class="row profile-header ">
             <div class="col-12 p-5 rounded-lg m-3" data-aos="fade-down">
                 <h2 class="title_profil">PROFIL DESA/KELURAHAN</h2>
@@ -151,94 +208,43 @@
         </div>
         <div class="row" data-aos="fade-up">
             <div class="col-12 col-md-8">
-                <div class="box-map">
+                <div class="box-map h-100">
                     <div id="map"></div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box">
-                            <div class="custom-card">
-                                <div class="icon-container">
-                                    <div class="bg-icon">
-                                        <i class="icon_color fas fa-home fa-3x"></i>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h5 class="card-title">Indeks Desa Membangun</h5>
-                                    <p class="card-text"></p>
-                                    <p class="card-date">Sumber: Kemendagri 2021</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box">
-                            <div class="custom-card">
-                                <div class="icon-container">
-                                    <div class="bg-icon">
-                                        <i class="icon_color fab fa-nutritionix fa-3x"></i>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h5 class="card-title">Status Stunting</h5>
-                                    <p class="card-text">Bukan Desa Prioritas Stunting</p>
-                                    <p class="card-date">Sumber: Kemendagri 2021</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+        
             <div class="col-12 col-md-4">
                 <div class="row">
                     <div class="col-12">
-                        <div class="box">
-                            <div class="custom-card">
+                        <div class="box-map-side">
+                            <div class="custom-card h-100">
                                 <div class="icon-container">
                                     <div class="bg-icon">
-                                        <i class="icon_color fas fa-mountain fa-3x"></i>
+                                        <i class="fas fa-venus-mars icon_color fa-3x"></i>
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <h5 class="card-title">Tipologi</h5>
-                                    <p class="card-text">Di Luar Kawasan Hutan</p>
-                                    <p class="card-date">Sumber: Podes 2021</p>
+                                    <h5 class="card-title">Lapduk</h5>
+                                    <p class="card-text" id="toal_lapduk">0 jiwa</p>
+                                    <p class="card-text" id="jml_men">0 Laki-laki</p>
+                                    <p class="card-text" id="jml_woman">0 Perempuan</p>
+                                    <p class="card-date">Sumber: Profil RW 2024</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="box">
-                            <div class="custom-card">
-                                <div class="icon-container">
-                                    <div class="bg-icon">
-                                        <i class="icon_color fas fa-user fa-3x"></i>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h5 class="card-title">Jumlah Penduduk</h5>
-                                    <p class="card-text">0 jiwa</p>
-                                    <p class="card-text">0 Laki-laki</p>
-                                    <p class="card-text">0 Perempuan</p>
-                                    <p class="card-date">Sumber: Regsosek 2021</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="box">
-                            <div class="custom-card">
+                        <div class="box-map-side">
+                            <div class="custom-card h-100">
                                 <div class="icon-container">
                                     <div class="bg-icon">
                                         <i class="icon_color fas fa-users fa-3x"></i>
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <h5 class="card-title">Jumlah Keluarga</h5>
-                                    <p class="card-text">0 jiwa</p>
-                                    <p class="card-text">0 Laki-laki</p>
-                                    <p class="card-text">0 Perempuan</p>
-                                    <p class="card-date">Sumber: Regsosek 2021</p>
+                                    <h5 class="card-title">Kelompok Masyarakat</h5>
+                                    <p class="card-text" id="kelompok_masyarakat">-</p>
+                                    <p class="card-date">Sumber: Profil RW 2024</p>
                                 </div>
                             </div>
                         </div>
@@ -246,120 +252,172 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="box h-100">
+                    <div class="custom-card h-100">
+                        <div class="icon-container">
+                            <div class="bg-icon">
+                                <i class="icon_color fas fa-money-bill-alt fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-title">Ekonomi</h5>
+                            <p class="card-text" id="ekonomi">-</p>
+                            <p class="card-date">Sumber: Profil RW 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="box h-100">
+                    <div class="custom-card h-100">
+                        <div class="icon-container">
+                            <div class="bg-icon">
+                                <i class="icon_color fas fa-graduation-cap fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-title">Pendidikan</h5>
+                            <p class="card-text" id="pendidikan">-</p>
+                            <p class="card-date">Sumber: Profil RW 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="box h-100">
+                    <div class="custom-card h-100">
+                        <div class="icon-container">
+                            <div class="bg-icon">
+                                <i class="icon_color fas fa-smile fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-title">Keamanan Dan Kebersihan</h5>
+                            <p class="card-text" id="keamanan_dan_kebersihan">-</p>
+                            <p class="card-date">Sumber: Profil RW 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row" data-aos="fade-up">
             <div class="col-12 col-md-4">
-
-                    <div class="box">
-                        <div class="custom-card">
+                    <div class="box h-100">
+                        <div class="custom-card h-100">
                             <div class="icon-container">
                                 <div class="bg-icon">
-                                    <i class="icon_color fas fa-box-open fa-3x"></i>
+                                    <i class="icon_color fas fa-tint fa-3x"></i>
                                 </div>
                             </div>
                             <div class="card-content">
-                                <h5 class="card-title">Produk Unggulan</h5>
-                                <p class="card-text">Kerajinan Barang Daur Ulang</p>
-                                <p class="card-text">Ada 1 Desa Yang Memiliki Produk Unggulan</p>
-                                <p class="card-date">Sumber: Regsosek 2021</p>
+                                <h5 class="card-title">Prasarana Air Bersih</h5>
+                                <p class="card-text" id="prasarana_air_bersih">-</p>
+                                <p class="card-date">Sumber: Profil RW 2024</p>
                             </div>
                         </div>
                     </div>
       
             </div>
-            <div class="col-12 col-md-8">
-                <div class="box">
-                    <div class="custom-card">
-                        <div class="card-content-center">
-                            <h5 class="card-title-center">Jumlah Penduduk Berdasarkan Usia</h5>
-                            <div class="row card-text">
-                                <div class="col-5 d-flex justify-content-center">
-                                    <div class="p-2">
-                                        <p class="fw-bold">0-6</p>
-                                        <p class="fw-bold">7-18</p>
-                                        <p class="fw-bold">19-24</p>
-                                    </div>
-                                    <div class="p-2">
-                                        <p>0</p>
-                                        <p>0</p>
-                                        <p>0</p>
-                                    </div>                    
-                                </div>
-                                <div class="col-1 d-flex align-items-center justify-content-center">
-                                    <div class="vr"></div>
-                                </div>
-                                <div class="col-5 d-flex justify-content-center">
-                                    <div class="p-2">
-                                        <p class="fw-bold">25-40</p>
-                                        <p class="fw-bold">41-60</p>
-                                        <p class="fw-bold">> 60</p>
-                                    </div>
-                                    <div class="p-2">
-                                        <p>0</p>
-                                        <p>0</p>
-                                        <p>0</p>
-                                    </div>   
+            <div class="col-12 col-md-4">
+                    <div class="box h-100">
+                        <div class="custom-card h-100">
+                            <div class="icon-container">
+                                <div class="bg-icon">
+                                    <i class="icon_color fas fa-blind fa-3x"></i>
                                 </div>
                             </div>
-                            <p class="card-date">Sumber: Regsosek 2021</p>
+                            <div class="card-content">
+                                <h5 class="card-title">Disabilitas (Mental & Fisik)</h5>
+                                <p class="card-text" id="disabilitas_cacat_mental_fisik">-</p>
+                                <p class="card-date">Sumber: Profil RW 2024</p>
+                            </div>
                         </div>
                     </div>
+            </div>
+            <div class="col-12 col-md-4">
+                    <div class="box h-100">
+                        <div class="custom-card h-100">
+                            <div class="icon-container">
+                                <div class="bg-icon">
+                                    <i class="icon_color fas fa-hand-holding-heart fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h5 class="card-title">Disabilitas (Mental)</h5>
+                                <p class="card-text" id="disabilitas_cacat_mental">-</p>
+                                <p class="card-date">Sumber: Profil RW 2024</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row" data-aos="fade-up">
+            <div class="col-12 col-md-6">
+                <div class="box h-100">
+                    <div class="custom-card h-100">
+                            <div class="icon-container">
+                                <div class="bg-icon">
+                                    <i class="icon_color fas fa-praying-hands fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="card-content"> 
+                                <h5 class="card-title">Prasarana Peribadatan</h5>
+                                <p class="card-text" id="prasarana_peribadatan">-</p>
+                                <p class="card-date">Sumber: Profil RW 2024</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="box h-100">
+                    <div class="custom-card h-100">
+                            <div class="icon-container">
+                                <div class="bg-icon">
+                                    <i class="icon_color fas fa-futbol fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="card-content"> 
+                                <h5 class="card-title">Prasarana Olahraga</h5>
+                                <p class="card-text" id="prasarana_olahraga">-</p>
+                                <p class="card-date">Sumber: Profil RW 2024</p>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
         <div class="row" data-aos="fade-up">
-            <div class="col-12 col-md-4">
-                <div class="box">
-                        <div class="custom-card">
+            <div class="col-12 col-md-6">
+                <div class="box h-100">
+                    <div class="custom-card h-100">
                             <div class="icon-container">
                                 <div class="bg-icon">
-                                    <i class="icon_color fas fa-coins fa-3x"></i>
+                                    <i class="icon_color fas fa-medkit fa-3x"></i>
                                 </div>
                             </div>
                             <div class="card-content"> 
-                                <h5 class="card-title">Sumber Penghasilan Utama</h5>
-                                <p class="card-text">Penyediaan Akomodasi dan Makan Minum</p>
-                                <p class="card-date">Sumber: Podes 2021</p>
+                                <h5 class="card-title">Kesehatan</h5>
+                                <p class="card-text" id="kesehatan">-</p>
+                                <p class="card-date">Sumber: Profil RW 2024</p>
                             </div>
                         </div>
                 </div>
             </div>
-            <div class="col-12 col-md-8">
-                <div class="box">
-                    <div class="custom-card">
-                        <div class="card-content-center">
-                            <h5 class="card-title-center">Jumlah Penduduk Berdasarkan Disabilitas</h5>
-                            <div class="row card-text">
-                                <div class="col-5 d-flex justify-content-center">
-                                    <div class="p-2 text-end">
-                                        <p class="fw-bold">Netra</p>
-                                        <p class="fw-bold">Rungu</p>
-                                        <p class="fw-bold">Wicara</p>
-                                    </div>
-                                    <div class="p-2">
-                                        <p>0</p>
-                                        <p>0</p>
-                                        <p>0</p>
-                                    </div>
-                                </div>
-                                <div class="col-1 d-flex align-items-center justify-content-center">
-                                    <div class="vr"></div>
-                                </div>
-                                <div class="col-5 d-flex justify-content-center">
-                                    <div class="p-2 text-end">
-                                        <p class="fw-bold">Fisik</p>
-                                        <p class="fw-bold">Mental</p>
-                                        <p class="fw-bold">Intelektual</p>
-                                    </div>
-                                    <div class="p-2">
-                                        <p>0</p>
-                                        <p>0</p>
-                                        <p>0</p>
-                                    </div>
+            <div class="col-12 col-md-6">
+                   <div class="box h-100">
+                    <div class="custom-card h-100">
+                            <div class="icon-container">
+                                <div class="bg-icon">
+                                    <i class="icon_color fas fa-utensils fa-3x"></i>
                                 </div>
                             </div>
-                            <p class="card-date">Sumber: Regsosek 2021</p>
+                            <div class="card-content"> 
+                                <h5 class="card-title">Hiburan</h5>
+                                <p class="card-text" id="hiburan">-</p>
+                                <p class="card-date">Sumber: Profil RW 2024</p>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -369,16 +427,200 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="map.js"></script>
+    <script src="data.js"></script>
+
     <script>
-        AOS.init();
-      var map = L.map("map").setView([-6.922500, 107.658527], 15);
+     
+
+            $(".preload").fadeOut(200, function() {
+                $(".content").fadeIn(200);     
+                AOS.init();
+                var map = L.map("map").setView([-6.922500, 107.658527], 15);
+
+                    L.tileLayer("http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
+                    maxZoom: 16,
+                    minZoom: 15,
+                    attribution:
+                        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    }).addTo(map);
+
+                    // Set style function that sets fill color property
+                    function style(feature) {
+                        return {
+                            fillColor: 'green', 
+                            fillOpacity: 0.9,  
+                            weight: 2,
+                            opacity: 1,
+                            color: '#ffffff',
+                            dashArray: '3'
+                        };
+                    }
+
+                    var highlight = {
+                        'fillColor': '#00000',
+                        'color': '#00000',
+                        'weight': 5,
+                        'opacity': 1,
+                        'fillOpacity': .8,  
+                    };
 
 
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
+                function onEachFeature(feature, layer) {
+                    var tooltipContent = "<b> RW " + feature.properties.rw + "</b><br/>"
+                    var tooltip = layer.bindTooltip(tooltipContent, { permanent: true, direction: 'center', className: "my-labels" });
+
+                    // Event on hover
+                    // layer.on('mouseover', function (e) {
+                    //     geojsonLayer.resetStyle(this);
+                    //     this.setStyle({
+                    //             fillColor: '#f9f9f9',
+                    //             weight: 2,
+                    //             opacity: 1,
+                    //             color: '#e86712',
+                    //             dashArray: '3',
+                    //             fillOpacity: 0.8
+                    //     });
+                    // });
+
+                    // layer.on('mouseout', function (e) {
+                    //     geojsonLayer.resetStyle(style);
+                    // });
+
+                    // Event on click
+                    layer.on('click', function (e) {
+                        $(".preload").show();
+                        setTimeout(function() {
+                            $(".preload").hide();
+                            $(".content").show();
+                        }, 200);
+                        var selectedRW= feature.properties.rw
+
+                        var bounds = layer.getBounds();
+                        var toolTipElement = tooltip.getTooltip().getElement();
+                        toolTipElement.classList.toggle('active');
+                        map.fitBounds(bounds, {padding: [120, 120]});
+                        console.log(selectedRW)
+                        geojsonLayer.setStyle(style);
+                        layer.setStyle(highlight); 
+
+                        var dataSelectedRW = db.find((data) => data.rw == selectedRW)
+                    
+                        if(dataSelectedRW == undefined || dataSelectedRW == {}){
+                            alert("Data RW " + selectedRW + " tidak ditemukan")
+                        }else{
+
+                            dataSelectedRW.tab.forEach(function(result){
+                          
+                                if(result.key == "kelompok_masyarakat"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#kelompok_masyarakat').html(list);
+                                }else if(result.key == "lapduk"){
+                                    var _totalJiwa = 0;
+                                    result.data.forEach(function(item) {
+                                        _totalJiwa += item.value
+                                        if(item.key == "l"){
+                                            $('#jml_men').text(item.value + " Laki-laki")
+                                        }
+
+                                        if(item.key == "p"){
+                                            $('#jml_woman').text(item.value + " Perempuan")
+                                        }
+                                    });
+                                   $('#toal_lapduk').text(_totalJiwa + " Jiwa")
+                                }else if(result.key == "ekonomi"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#ekonomi').html(list);
+                                }else if(result.key == "pendidikan"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#pendidikan').html(list); 
+                                }else if(result.key == "keamanan_dan_kebersihan"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#keamanan_dan_kebersihan').html(list); 
+                                }else if(result.key == "prasana_air_bersih"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#prasarana_air_bersih').html(list); 
+                                }else if(result.key == "disabilitas_cacat_mental_fisik"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#disabilitas_cacat_mental_fisik').html(list); 
+                                }else if(result.key == "disabilitas_cacat_mental"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#disabilitas_cacat_mental').html(list); 
+                                }else if(result.key == "prasarana_ibadat"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#prasarana_peribadatan').html(list); 
+                                }else if(result.key == "prasarana_olahraga"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#prasarana_olahraga').html(list);       
+                                }else if(result.key == "kesehatan"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#kesehatan').html(list);       
+                                }else if(result.key == "hiburan"){
+                                    var list = $('<ul></ul>');
+                                    result.data.forEach(function(item) {
+                                        list.append($('<ul class="no-bullets"></ul>').text(item.value  + " " + item.title));
+                                    });
+                                    $('#hiburan').html(list);       
+                                }
+                            })
+                            // var lapdukData = dataSelectedRW.tab.find((_data) => _data.key == "lapduk")
+                            // $('#jml_men').text(lapdukData.data.find((_dataL) => _dataL.key == "l").value + " Laki-laki") 
+
+                        }  
+                    });
+                }
+
+                function style(feature) {
+                        return {
+                            fillColor: feature.properties.fill,
+                            weight: 1,
+                            opacity: 1,
+                            stroke: "#555555",
+                            color: 'white',
+                            dashArray: '2',
+                            fillOpacity: 0.8
+                        };
+                    }
+
+                var geojsonLayer = L.geoJSON(objmap, {
+                        onEachFeature: onEachFeature,
+                        style: style
+                    }).addTo(map);
+
+                map.fitBounds(geojsonLayer.getBounds());     
+            });
+        
+
     </script>
 </body>
 </html>
