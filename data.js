@@ -1560,8 +1560,8 @@ var db = [
                         "title": "kelompok_tenis_meja",
                         "value": "1"
                     },{
-                        "key": "Kelompok Arisan",
-                        "title": "kelompok_arisan",
+                        "key": "kelompok_arisan ",
+                        "title": "Kelompok Arisan",
                         "value": "1"
                     }
                 ]
@@ -2068,8 +2068,8 @@ var db = [
                         "title": "Kelompok Penggajian ",
                         "value": "3"
                     },{
-                        "key": "Kelompok Arisan",
-                        "title": "kelompok_arisan",
+                        "key": "kelompok_arisan",
+                        "title": "Kelompok Arisan",
                         "value": "1"
                     },{
                         "key": "pkk",
@@ -2752,6 +2752,682 @@ var db = [
                         title : "Perempuan",
                         key : "p",
                         value : 546
+                    }
+                ]
+            }
+        ]
+    },{
+        rw: "16",
+        tab:[
+            {
+                title: "Kelompok Masyarakat",
+                key : "kelompok_masyarakat",
+                data : [
+                    {
+                        "key": "posyandu",
+                        "title": "Posyandu",
+                        "value": "1"
+                    },{
+                        "key": "kelompok_penggajian",
+                        "title": "Kelompok Penggajian",
+                        "value": "5"
+                    }
+                ]
+            },{
+                title: "Ekonomi",
+                key : "ekonomi",
+                data : [
+                    {
+                        "key": "makanan",
+                        "title": "Makanan",
+                        "value": "4 Unit"
+                    }, {
+                        "key": "perdagangan",
+                        "title": "Perdagangan",
+                        "value": "2 Unit"
+                    }, {
+                        "key": "warung_makan",
+                        "title": "Warung Makan",
+                        "value": "4 Unit"
+                    }, {
+                        "key": "kios_Kelontong",
+                        "title": "Kios Kelontong",
+                        "value": "9 Unit"
+                    }, {
+                        "key": "Bengkel",
+                        "title": "Bengkel",
+                        "value": "1 Unit"
+                    }, {
+                        "key": "tempat_makan_burung",
+                        "title": "Tempat Makan Burung",
+                        "value": "5 Unit"
+                    }
+                ]
+            },{
+                title: "Pendidikan",
+                key: "pendidikan",
+                data : [
+                    
+                ]
+            },{
+                title: "Keamanan Dan Kebersihan",
+                key: "keamanan_dan_kebersihan",
+                data : [
+                     {
+                        "key": "jumlah_pos_kamling",
+                        "title": "Jumlah Pos Kamling",
+                        "value": "6 Unit"
+                    }, {
+                        "key": "jumlah_kebersihan",
+                        "title": "Jumlah Kebersihan",
+                        "value": "1 Unit"
+                    }
+                ]
+            },{
+                title: "Prasana Air Bersih",
+                key: "prasana_air_bersih",
+                data : [
+                    {
+                        title : "Sumur Pompa",
+                        key : "jumlah_sumur_pompa",
+                        value : "30 Unit"
+                    },
+                    {
+                        title : "Sumur Gali",
+                        key : "jumlah_sumur_gali",
+                        value : "5 Unit"
+                    },
+                    {
+                        title : "Hidran Umum",
+                        key : "jumlah_hidran_umum",
+                        value : "3 Unit"
+                    },
+                    {
+                        title : "Pengguna Air Sumur Gali",
+                        key : "jumlah_air_sumur_gali",
+                        value : "6 KK"
+                    },
+                    {
+                        title : "Pengguna Hidran Umum",
+                        key : "jumlah_air_sumur_gali",
+                        value : "110 KK"
+                    },
+                    {
+                        title : "Pengguna Sumur Pompa",
+                        key : "jumlah_sumur_pompa",
+                        value : "170 KK"
+                    },{
+                        title : "Pengguna PAM",
+                        key : "jumlah_pengguna_pam",
+                        value : "5 KK"
+                    },{
+                        title : "Pengguna Perpipaan",
+                        key : "jumlah_pengguna_pam",
+                        value : "8 KK"
+                    },{
+                        title : "Pengguna MCK",
+                        key : "jumlah_pengguna_pam",
+                        value : "3 KK"
+                    }
+                ]
+            },{
+                title: "Disabilitas Cacat Mental Dan Fisik",
+                key: "disabilitas_cacat_mental_fisik",
+                data : [
+                    {
+                        title : "Tuna Daksa",
+                        key : "tuna_daksa",
+                        value : "1 Orang"
+                    }, {
+                        title : "Lumpuh",
+                        key : "lumpuh",
+                        value : "1 Orang"
+                    }
+                ]
+            },{
+                title: "Disabilitas Cacat Mental",
+                key: "disabilitas_cacat_mental",
+                data : [
+                    {
+                        title : "Stres",
+                        key : "stres",
+                        value : "1 Orang"
+                    }
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_ibadat",
+                data : [
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_olahraga",
+                data : [
+                    {
+                        title : "Lapangan tenis",
+                        key : "lap_tenis",
+                        value : "1 Orang"
+                    }
+                ]
+            },{
+                title: "Kesehatan",
+                key: "kesehatan",
+                data : [
+                    {
+                        title : "Apotik",
+                        key : "apotik",
+                        value : "1 Unit"
+                    },{
+                        title : "Posyandu",
+                        key : "posyandu",
+                        value : "1 Unit"
+                    }
+                ]
+            },{
+                title: "Hiburan",
+                key: "hiburan",
+                data : [
+                   
+                ]
+            },{
+                title: "Lapduk",
+                key: "lapduk",
+                data : [
+                    {
+                        title : "Laki Laki",
+                        key : "l",
+                        value : 552
+                    },{
+                        title : "Perempuan",
+                        key : "p",
+                        value : 562
+                    }
+                ]
+            }
+        ]
+    },{
+        rw: "17",
+        tab:[
+            {
+                title: "Kelompok Masyarakat",
+                key : "kelompok_masyarakat",
+                data : [
+               
+                ]
+            },{
+                title: "Ekonomi",
+                key : "ekonomi",
+                data : [
+                    {
+                        "key": "koperasi",
+                        "title": "Koperasi",
+                        "value": "1 Unit"
+                    },
+                    {
+                        "key": "makanan",
+                        "title": "Makanan",
+                        "value": "3 Unit"
+                    },
+                    {
+                        "key": "mebel",
+                        "title": "Mebel",
+                        "value": "1 Unit"
+                    }, {
+                        "key": "perdagangan",
+                        "title": "Perdagangan",
+                        "value": "5 Unit"
+                    },{
+                        "key": "kios_Kelontong",
+                        "title": "Kios Kelontong",
+                        "value": "4 Unit"
+                    }, {
+                        "key": "Bengkel",
+                        "title": "Bengkel",
+                        "value": "2 Unit"
+                    }, {
+                        "key": "percetakan_sablon",
+                        "title": "Percetakan Sablon",
+                        "value": "1 Unit"
+                    }
+                ]
+            },{
+                title: "Pendidikan",
+                key: "pendidikan",
+                data : [
+                    {
+                        "key": "tk",
+                        "title": "TK",
+                        "value": "1 Unit"
+                    }, {
+                        "key": "SD/Sederajat",
+                        "title": "SD/Sederajat",
+                        "value": "1 Unit"
+                    }, {
+                        "key": "SLTP/Sederajat",
+                        "title": "SLTP/Sederajat",
+                        "value": "2 Unit"
+                    }, {
+                        "key": "SLTA/Sederajat",
+                        "title": "SLTA/Sederajat",
+                        "value": "1 Unit"
+                    }, {
+                        "key": "kursus_las",
+                        "title": "Kursus Las",
+                        "value": "1 Unit"
+                    }
+                ]
+            },{
+                title: "Keamanan Dan Kebersihan",
+                key: "keamanan_dan_kebersihan",
+                data : [
+                    {
+                        "key": "linmas",
+                        "title": "Jumlah Linmas",
+                        "value": "2 Orang"
+                    }
+                ]
+            },{
+                title: "Prasana Air Bersih",
+                key: "prasana_air_bersih",
+                data : [{
+                        title : "Pengguna PAM",
+                        key : "jumlah_pengguna_pam",
+                        value : "190 KK"
+                    },{
+                        title : "Jumlah PAM",
+                        key : "jumlah_pengguna_pam",
+                        value : "190 Unit"
+                    }
+                ]
+            },{
+                title: "Disabilitas Cacat Mental Dan Fisik",
+                key: "disabilitas_cacat_mental_fisik",
+                data : [
+              
+                ]
+            },{
+                title: "Disabilitas Cacat Mental",
+                key: "disabilitas_cacat_mental",
+                data : [
+                    {
+                        title : "Stres",
+                        key : "stres",
+                        value : "1 Orang"
+                    }
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_ibadat",
+                data : [
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_olahraga",
+                data : [
+ 
+                ]
+            },{
+                title: "Kesehatan",
+                key: "kesehatan",
+                data : [{
+                        title : "Posyandu",
+                        key : "posyandu",
+                        value : "1 Unit"
+                    }
+                ]
+            },{
+                title: "Hiburan",
+                key: "hiburan",
+                data : [
+                   
+                ]
+            },{
+                title: "Lapduk",
+                key: "lapduk",
+                data : [
+                    {
+                        title : "Laki Laki",
+                        key : "l",
+                        value : 407
+                    },{
+                        title : "Perempuan",
+                        key : "p",
+                        value : 377
+                    }
+                ]
+            }
+        ]
+    },{
+        rw: "18",
+        tab:[
+            {
+                title: "Kelompok Masyarakat",
+                key : "kelompok_masyarakat",
+                data : [
+               
+                ]
+            },{
+                title: "Ekonomi",
+                key : "ekonomi",
+                data : [ {
+                        "key": "perdagangan",
+                        "title": "Perdagangan",
+                        "value": "35 Unit"
+                    }, {
+                        "key": "warung_makan",
+                        "title": "Warung Makan",
+                        "value": "3 Unit"
+                    }, {
+                        "key": "kios_Kelontong",
+                        "title": "Kios Kelontong",
+                        "value": "3 Unit"
+                    }, {
+                        "key": "Bengkel",
+                        "title": "Bengkel",
+                        "value": "3 Unit"
+                    }, {
+                        "key": "percetakan",
+                        "title": "Percetakan",
+                        "value": "1 Unit"
+                    }
+                ]
+            },{
+                title: "Pendidikan",
+                key: "pendidikan",
+                data : [
+                     {
+                        "key": "tk",
+                        "title": "TK",
+                        "value": "1 Unit"
+                    }
+                ]
+            },{
+                title: "Keamanan Dan Kebersihan",
+                key: "keamanan_dan_kebersihan",
+                data : [
+                     {
+                        "key": "jumlah_pos_kamling",
+                        "title": "Jumlah Pos Kamling",
+                        "value": "2 Unit"
+                    }, {
+                        "key": "jumlah_kebersihan",
+                        "title": "Jumlah Kebersihan",
+                        "value": "4 Unit"
+                    }, {
+                        "key": "jumlah_linmas",
+                        "title": "Jumlah Linmas",
+                        "value": "4 Orang"
+                    }, {
+                        "key": "jumlah_satpam",
+                        "title": "Jumlah Satpam",
+                        "value": "5 Orang"
+                    }
+                ]
+            },{
+                title: "Prasana Air Bersih",
+                key: "prasana_air_bersih",
+                data : [
+                ]
+            },{
+                title: "Disabilitas Cacat Mental Dan Fisik",
+                key: "disabilitas_cacat_mental_fisik",
+                data : [
+                ]
+            },{
+                title: "Disabilitas Cacat Mental",
+                key: "disabilitas_cacat_mental",
+                data : [
+ 
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_ibadat",
+                data : [
+                    {
+                        title : "Masjid",
+                        key : "masjid",
+                        value : "1 Buah"
+                    }
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_olahraga",
+                data : [
+                    {
+                        title : "Lapangan tenis",
+                        key : "lap_tenis",
+                        value : "1 Buah"
+                    }
+                ]
+            },{
+                title: "Kesehatan",
+                key: "kesehatan",
+                data : [
+                    {
+                        title : "Posyandu",
+                        key : "posyandu",
+                        value : "1 Unit"
+                    }
+                ]
+            },{
+                title: "Hiburan",
+                key: "hiburan",
+                data : [
+                   
+                ]
+            },{
+                title: "Lapduk",
+                key: "lapduk",
+                data : [
+                    {
+                        title : "Laki Laki",
+                        key : "l",
+                        value : 627
+                    },{
+                        title : "Perempuan",
+                        key : "p",
+                        value : 574
+                    }
+                ]
+            }
+        ]
+    },{
+        rw: "19",
+        tab:[
+            {
+                title: "Kelompok Masyarakat",
+                key : "kelompok_masyarakat",
+                data : [
+                    {
+                        "key": "karang_taruna",
+                        "title": "Karang Taruna",
+                        "value": "1 Unit"
+                    },{
+                        "key": "posyandu",
+                        "title": "Posyandu",
+                        "value": "1 Unit"
+                    },{
+                        "key": "kelompok_penggajian",
+                        "title": "Kelompok Penggajian",
+                        "value": "1 Unit"
+                    },{
+                        "key": "yayasan_jantung",
+                        "title": "Yayasan Jantung",
+                        "value": "1 Unit"
+                    }
+                ]
+            },{
+                title: "Ekonomi",
+                key : "ekonomi",
+                data : [{
+                    "key": "makanan",
+                    "title": "Makanan",
+                    "value": "1 Unit"
+                  },{
+                        "key": "warung_makan",
+                        "title": "Warung Makan",
+                        "value": "3 Unit"
+                    }, {
+                        "key": "kios_Kelontong",
+                        "title": "Kios Kelontong",
+                        "value": "10 Unit"
+                    }, {
+                        "key": "Bengkel",
+                        "title": "Bengkel",
+                        "value": "1 Unit"
+                    }, {
+                        "key": "percetakan_sablon",
+                        "title": "Percetakan Sablon",
+                        "value": "1 Unit"
+                    }, {
+                        "key": "konveksi",
+                        "title": "Konveksi",
+                        "value": "3 Unit"
+                    }
+                ]
+            },{
+                title: "Pendidikan",
+                key: "pendidikan",
+                data : [
+                     {
+                        "key": "tk",
+                        "title": "TK",
+                        "value": "2 Unit"
+                    },{
+                        "key": "lembaga_pendidikan_keagamaan",
+                        "title": "Lembaga Pendidikan Keagamaan",
+                        "value": "2 Unit"
+                    },{
+                        "key": "kursus_bahasa",
+                        "title": "Kursus Bahasa",
+                        "value": "1 Unit"
+                    },{
+                        "key": "kursus_las",
+                        "title": "Kursus Las",
+                        "value": "1 Unit"
+                    }
+                ]
+            },{
+                title: "Keamanan Dan Kebersihan",
+                key: "keamanan_dan_kebersihan",
+                data : [
+                     {
+                        "key": "jumlah_pos_kamling",
+                        "title": "Jumlah Pos Kamling",
+                        "value": "2 Unit"
+                    }, {
+                        "key": "jumlah_kebersihan",
+                        "title": "Jumlah Kebersihan",
+                        "value": "4 Orang"
+                    }, {
+                        "key": "jumlah_linmas",
+                        "title": "Jumlah Linmas",
+                        "value": "5 Orang"
+                    }, {
+                        "key": "jumlah_satpam",
+                        "title": "Jumlah Satpam",
+                        "value": "6 Orang"
+                    }
+                ]
+            },{
+                title: "Prasana Air Bersih",
+                key: "prasana_air_bersih",
+                data : [
+                    {
+                        "key": "hidran_umum",
+                        "title": "Hidran Umum",
+                        "value": "5 Orang"
+                    },{
+                        "key": "pengguna_sumur_pompa",
+                        "title": "Pengguna Sumur Pompa",
+                        "value": "5 KK"
+                    },{
+                        "key": "pengguna_sumur_pompa_Baik",
+                        "title": "Sumur Pompa Baik",
+                        "value": "500 Unit"
+                    }
+                ]
+            },{
+                title: "Disabilitas Cacat Mental Dan Fisik",
+                key: "disabilitas_cacat_mental_fisik",
+                data : [
+                    {
+                        "key": "Hidrosefalus",
+                        "title": "Hidrosefalus",
+                        "value": "1 Orang"
+                    }
+                ]
+            },{
+                title: "Disabilitas Cacat Mental",
+                key: "disabilitas_cacat_mental",
+                data : [
+                    {
+                        "key": "idiot",
+                        "title": "Idiot",
+                        "value": "1 Orang"
+                    },{
+                        "key": "sakit_ingatan",
+                        "title": "Sakit Ingatan",
+                        "value": "1 Orang"
+                    }
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_ibadat",
+                data : [
+                    {
+                        title : "Masjid",
+                        key : "masjid",
+                        value : "2 Buah"
+                    }, {
+                        title : "Langgar/Mushola",
+                        key : "masjid",
+                        value : "1 Buah"
+                    }
+                ]
+            },{
+                title: "Ibadat Dan Olahraga",
+                key: "prasarana_olahraga",
+                data : [
+                    {
+                        title : "Lapangan Sepak Bola",
+                        key : "lap_sepak_bola",
+                        value : "1 Buah"
+                    },
+                    {
+                        title : "Lapangan tenis",
+                        key : "lap_tenis",
+                        value : "1 Buah"
+                    }
+                ]
+            },{
+                title: "Kesehatan",
+                key: "kesehatan",
+                data : [
+                    {
+                        title : "Posyandu",
+                        key : "posyandu",
+                        value : "1 Unit"
+                    }
+                ]
+            },{
+                title: "Hiburan",
+                key: "hiburan",
+                data : [
+                   
+                ]
+            },{
+                title: "Lapduk",
+                key: "lapduk",
+                data : [
+                    {
+                        title : "Laki Laki",
+                        key : "l",
+                        value : 537
+                    },{
+                        title : "Perempuan",
+                        key : "p",
+                        value : 482
                     }
                 ]
             }
