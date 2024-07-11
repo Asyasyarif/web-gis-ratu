@@ -2658,25 +2658,45 @@ var db = [
             {
                 title: "Kelompok Masyarakat",
                 key : "kelompok_masyarakat",
-                data : [
-                    {
+                data: [
+                   {
                         "key": "posyandu",
                         "title": "Posyandu",
-                        "value": "1"
+                        "value": "7"
                     },{
                         "key": "kelompok_penggajian",
                         "title": "Kelompok Penggajian",
-                        "value": "5"
+                        "value": "35"
                     }
                 ]
             },{
                 title: "Ekonomi",
                 key : "ekonomi",
                 data : [
-                    {
-                        "key": "konveksi",
-                        "title": "Konveksi",
-                        "value": "1 Unit"
+                   {
+                        "key": "makanan",
+                        "title": "Makanan",
+                        "value": "1"
+                    },{
+                        "key": "kios_kelontong",
+                        "title": "Kios Kelontong",
+                        "value": "1"
+                    },{
+                        "key": "bengkel",
+                        "title": "Bengkel",
+                        "value": "1"
+                    },{
+                        "key": "percetakan_sablon",
+                        "title": "Percetakan / Sablon",
+                        "value": "2"
+                    },{
+                        "key": "percetakan",
+                        "title": "Percetakan",
+                        "value": "1"
+                    },{
+                        "key": "dll",
+                        "title": "DLL",
+                        "value": "2"
                     }
                 ]
             },{
@@ -2689,7 +2709,15 @@ var db = [
                 title: "Keamanan Dan Kebersihan",
                 key: "keamanan_dan_kebersihan",
                 data : [
-                   
+                    {
+                        "key": "pos_kamling",
+                        "title": "Pos Kamling",
+                        "value": "2"
+                    },{
+                        "key": "satpam",
+                        "title": "Satpam",
+                        "value": "13"
+                    }
                 ]
             },{
                 title: "Prasana Air Bersih",
@@ -2709,18 +2737,32 @@ var db = [
                 title: "Disabilitas Cacat Mental Dan Fisik",
                 key: "disabilitas_cacat_mental_fisik",
                 data : [
-
+                        {
+                        "key": "tuna_wicara",
+                        "title": "Tuna Wicara",
+                        "value": "1"
+                    }
                 ]
             },{
                 title: "Disabilitas Cacat Mental",
                 key: "disabilitas_cacat_mental",
                 data : [
-        
+                    {
+                        "key": "autisme",
+                        "title": "Autisme",
+                        "value": "2"
+                    }
                 ]
             },{
                 title: "Ibadat Dan Olahraga",
                 key: "prasarana_ibadat",
-                data : [
+                data: [
+                    {
+                        "key": "masjid",
+                        "title": "Masjid",
+                        "value": "1"
+                    }
+                
                 ]
             },{
                 title: "Ibadat Dan Olahraga",
@@ -2732,7 +2774,15 @@ var db = [
                 title: "Kesehatan",
                 key: "kesehatan",
                 data : [
-    
+                    {
+                        "key": "puskesmas",
+                        "title": "Puskesmas",
+                        "value": "5"
+                    },  {
+                        "key": "posyandu",
+                        "title": "Posyandu",
+                        "value": "4"
+                    }
                 ]
             },{
                 title: "Hiburan",
