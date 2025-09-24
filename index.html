@@ -771,16 +771,29 @@
                     var legend = document.getElementById('disasterLegend');
                     var disasterControls = document.getElementById('disasterTypeControls');
                     
+                    // Ambil semua elemen data informasi yang perlu disembunyikan
+                    var dataInfoElements = document.querySelectorAll('.box-map-side, .box');
+                    
                     if (selectedStyle === 'noColor') {
                         // Style peta bencana
                         geojsonLayer.setStyle(getDisasterStyle);
                         legend.style.display = 'block'; // Tampilkan legend
                         disasterControls.style.display = 'block'; // Tampilkan kontrol jenis bencana
+                        
+                        // Sembunyikan semua data informasi
+                        dataInfoElements.forEach(function(element) {
+                            element.style.display = 'none';
+                        });
                     } else {
                         // Style dengan warna (default)
                         geojsonLayer.setStyle(style);
                         legend.style.display = 'none'; // Sembunyikan legend
                         disasterControls.style.display = 'none'; // Sembunyikan kontrol jenis bencana
+                        
+                        // Tampilkan kembali semua data informasi
+                        dataInfoElements.forEach(function(element) {
+                            element.style.display = 'block';
+                        });
                     }
                 }
 
