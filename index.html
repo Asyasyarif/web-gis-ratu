@@ -222,8 +222,49 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="mapStyle" id="noColorMap" value="noColor">
                                 <label class="form-check-label" for="noColorMap" style="font-size: 13px; color: #333; font-weight: 500;">
-                                    Peta Peristiwa/Bencana
+                                    Peristiwa/Bencana
                                 </label>
+                            </div>
+                            
+                            <!-- Kontrol Jenis Bencana -->
+                            <div id="disasterTypeControls" style="display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
+                                <label class="form-label fw-bold" style="margin-bottom: 8px; color: #333; font-size: 12px;">Jenis Bencana:</label>
+                                <div class="form-check" style="margin-bottom: 3px;">
+                                    <input class="form-check-input" type="radio" name="disasterType" id="allDisasters" value="all" checked>
+                                    <label class="form-check-label" for="allDisasters" style="font-size: 12px; color: #333; font-weight: 500;">
+                                        Semua Bencana
+                                    </label>
+                                </div>
+                                <div class="form-check" style="margin-bottom: 3px;">
+                                    <input class="form-check-input" type="radio" name="disasterType" id="banjirType" value="banjir">
+                                    <label class="form-check-label" for="banjirType" style="font-size: 12px; color: #333; font-weight: 500;">
+                                        Banjir
+                                    </label>
+                                </div>
+                                <div class="form-check" style="margin-bottom: 3px;">
+                                    <input class="form-check-input" type="radio" name="disasterType" id="longsorType" value="longsor">
+                                    <label class="form-check-label" for="longsorType" style="font-size: 12px; color: #333; font-weight: 500;">
+                                        Longsor
+                                    </label>
+                                </div>
+                                <div class="form-check" style="margin-bottom: 3px;">
+                                    <input class="form-check-input" type="radio" name="disasterType" id="kebakaranType" value="kebakaran">
+                                    <label class="form-check-label" for="kebakaranType" style="font-size: 12px; color: #333; font-weight: 500;">
+                                        Kebakaran
+                                    </label>
+                                </div>
+                                <div class="form-check" style="margin-bottom: 3px;">
+                                    <input class="form-check-input" type="radio" name="disasterType" id="curanmorType" value="curanmor">
+                                    <label class="form-check-label" for="curanmorType" style="font-size: 12px; color: #333; font-weight: 500;">
+                                        Curanmor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="disasterType" id="perampokanType" value="perampokan">
+                                    <label class="form-check-label" for="perampokanType" style="font-size: 12px; color: #333; font-weight: 500;">
+                                        Perampokan
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         
@@ -658,31 +699,32 @@
 
                 map.fitBounds(geojsonLayer.getBounds());
 
-                // Data bencana berdasarkan spreadsheet
+                // Data bencana berdasarkan spreadsheet (sel merah = true)
                 var disasterData = {
-                    "01": { banjir: false, longsor: true, kebakaran: false, curanmor: false, perampokan: false },
-                    "02": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "03": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
-                    "04": { banjir: false, longsor: true, kebakaran: false, curanmor: false, perampokan: false },
-                    "05": { banjir: true, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "06": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "07": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "01": { banjir: true, longsor: true, kebakaran: false, curanmor: false, perampokan: false },
+                    "02": { banjir: true, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "03": { banjir: true, longsor: false, kebakaran: false, curanmor: true, perampokan: true },
+                    "04": { banjir: false, longsor: true, kebakaran: false, curanmor: true, perampokan: false },
+                    "05": { banjir: true, longsor: false, kebakaran: false, curanmor: true, perampokan: false },
+                    "06": { banjir: false, longsor: false, kebakaran: false, curanmor: true, perampokan: true },
+                    "07": { banjir: false, longsor: false, kebakaran: false, curanmor: true, perampokan: true },
                     "08": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "09": { banjir: true, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "10": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "11": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "12": { banjir: false, longsor: true, kebakaran: true, curanmor: true, perampokan: true },
-                    "13": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
-                    "14": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
-                    "15": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
-                    "16": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
-                    "17": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true }
+                    "09": { banjir: true, longsor: false, kebakaran: false, curanmor: true, perampokan: true },
+                    "10": { banjir: true, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "11": { banjir: true, longsor: false, kebakaran: false, curanmor: true, perampokan: false },
+                    "12": { banjir: false, longsor: true, kebakaran: true, curanmor: true, perampokan: false },
+                    "13": { banjir: false, longsor: false, kebakaran: false, curanmor: true, perampokan: false },
+                    "14": { banjir: true, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "15": { banjir: true, longsor: false, kebakaran: false, curanmor: true, perampokan: false },
+                    "16": { banjir: true, longsor: false, kebakaran: false, curanmor: true, perampokan: true },
+                    "17": { banjir: true, longsor: false, kebakaran: false, curanmor: true, perampokan: true }
                 };
 
                 // Fungsi untuk mendapatkan style bencana
                 function getDisasterStyle(feature) {
                     var rw = feature.properties.rw;
                     var disaster = disasterData[rw];
+                    var selectedDisasterType = document.querySelector('input[name="disasterType"]:checked').value;
                     
                     if (!disaster) {
                         return {
@@ -696,18 +738,20 @@
                         };
                     }
                     
-                    // Hitung jumlah bencana
-                    var disasterCount = 0;
-                    if (disaster.banjir) disasterCount++;
-                    if (disaster.longsor) disasterCount++;
-                    if (disaster.kebakaran) disasterCount++;
-                    if (disaster.curanmor) disasterCount++;
-                    if (disaster.perampokan) disasterCount++;
+                    // Cek apakah RW memiliki bencana sesuai jenis yang dipilih
+                    var hasDisaster = false;
+                    if (selectedDisasterType === 'all') {
+                        // Cek semua jenis bencana
+                        hasDisaster = disaster.banjir || disaster.longsor || disaster.kebakaran || disaster.curanmor || disaster.perampokan;
+                    } else {
+                        // Cek jenis bencana spesifik
+                        hasDisaster = disaster[selectedDisasterType];
+                    }
                     
-                    // Tentukan warna berdasarkan jumlah bencana
+                    // Tentukan warna berdasarkan ada/tidaknya bencana
                     var fillColor = '#f8f9fa'; // Default abu-abu
-                    if (disasterCount > 0) {
-                        fillColor = '#f44336'; // Merah untuk semua bencana
+                    if (hasDisaster) {
+                        fillColor = '#f44336'; // Merah untuk ada bencana
                     }
                     
                     return {
@@ -725,21 +769,34 @@
                 function updateMapStyle() {
                     var selectedStyle = document.querySelector('input[name="mapStyle"]:checked').value;
                     var legend = document.getElementById('disasterLegend');
+                    var disasterControls = document.getElementById('disasterTypeControls');
                     
                     if (selectedStyle === 'noColor') {
                         // Style peta bencana
                         geojsonLayer.setStyle(getDisasterStyle);
                         legend.style.display = 'block'; // Tampilkan legend
+                        disasterControls.style.display = 'block'; // Tampilkan kontrol jenis bencana
                     } else {
                         // Style dengan warna (default)
                         geojsonLayer.setStyle(style);
                         legend.style.display = 'none'; // Sembunyikan legend
+                        disasterControls.style.display = 'none'; // Sembunyikan kontrol jenis bencana
                     }
                 }
 
                 // Event listener untuk radio button
                 document.querySelectorAll('input[name="mapStyle"]').forEach(function(radio) {
                     radio.addEventListener('change', updateMapStyle);
+                });
+
+                // Event listener untuk jenis bencana
+                document.querySelectorAll('input[name="disasterType"]').forEach(function(radio) {
+                    radio.addEventListener('change', function() {
+                        var selectedStyle = document.querySelector('input[name="mapStyle"]:checked').value;
+                        if (selectedStyle === 'noColor') {
+                            geojsonLayer.setStyle(getDisasterStyle);
+                        }
+                    });
                 });
             });
         
