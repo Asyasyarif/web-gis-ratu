@@ -31,12 +31,12 @@
             background-color: transparent;
             border: transparent;
             box-shadow: none;
-            color: white;
+            color: rgb(63, 63, 63); 
         }
 
         .leaflet-tooltip.my-labels.active {
             background-color: transparent;
-            color: white; /* Pastikan teks terlihat di latar belakang putih */
+            color: rgb(63, 63, 63); /* Pastikan teks terlihat di latar belakang putih */
             box-shadow: none;
         }
         
@@ -209,7 +209,37 @@
         <div class="row" data-aos="fade-up">
             <div class="col-12 col-md-8">
                 <div class="box-map h-100">
-                    <div id="map"></div>
+                    <div id="map" style="position: relative;">
+                        <!-- Kontrol Tampilan Peta - di dalam peta -->
+                        <div id="mapControls" style="position: absolute; top: 20px; left: 20px; background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; border: 2px solid #333;">
+                            <label class="form-label fw-bold" style="margin-bottom: 10px; color: #333; font-size: 14px;">Tampilan Peta:</label>
+                            <div class="form-check" style="margin-bottom: 5px;">
+                                <input class="form-check-input" type="radio" name="mapStyle" id="coloredMap" value="colored" checked>
+                                <label class="form-check-label" for="coloredMap" style="font-size: 13px; color: #333; font-weight: 500;">
+                                    Peta Desa
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mapStyle" id="noColorMap" value="noColor">
+                                <label class="form-check-label" for="noColorMap" style="font-size: 13px; color: #333; font-weight: 500;">
+                                    Peta Peristiwa/Bencana
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Legend untuk peta bencana - di dalam peta -->
+                        <div id="disasterLegend" style="display: none; position: absolute; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; border: 2px solid #333;">
+                            <h6 style="margin-bottom: 10px; font-weight: bold; color: #333; text-align: center;">Legenda Bencana</h6>
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <div style="width: 20px; height: 15px; background-color: #f8f9fa; border: 2px solid #333; margin-right: 10px; border-radius: 3px;"></div>
+                                <span style="font-size: 13px; font-weight: 500; color: #333;">Tidak ada bencana</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 20px; height: 15px; background-color: #f44336; border: 2px solid #333; margin-right: 10px; border-radius: 3px;"></div>
+                                <span style="font-size: 13px; font-weight: 500; color: #333;">Ada bencana</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         
@@ -501,7 +531,16 @@
                         toolTipElement.classList.toggle('active');
                         map.fitBounds(bounds, {padding: [120, 120]});
                         console.log(selectedRW)
-                        geojsonLayer.setStyle(style);
+                        
+                        // Cek mode peta yang aktif
+                        var selectedStyle = document.querySelector('input[name="mapStyle"]:checked').value;
+                        if (selectedStyle === 'noColor') {
+                            // Mode bencana - gunakan style bencana
+                            geojsonLayer.setStyle(getDisasterStyle);
+                        } else {
+                            // Mode normal - gunakan style default
+                            geojsonLayer.setStyle(style);
+                        }
                         layer.setStyle(highlight); 
 
                         var dataSelectedRW = db.find((data) => data.rw == selectedRW)
@@ -617,7 +656,91 @@
                         style: style
                     }).addTo(map);
 
-                map.fitBounds(geojsonLayer.getBounds());     
+                map.fitBounds(geojsonLayer.getBounds());
+
+                // Data bencana berdasarkan spreadsheet
+                var disasterData = {
+                    "01": { banjir: false, longsor: true, kebakaran: false, curanmor: false, perampokan: false },
+                    "02": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "03": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
+                    "04": { banjir: false, longsor: true, kebakaran: false, curanmor: false, perampokan: false },
+                    "05": { banjir: true, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "06": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "07": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "08": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "09": { banjir: true, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "10": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "11": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "12": { banjir: false, longsor: true, kebakaran: true, curanmor: true, perampokan: true },
+                    "13": { banjir: false, longsor: false, kebakaran: false, curanmor: false, perampokan: false },
+                    "14": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
+                    "15": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
+                    "16": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true },
+                    "17": { banjir: true, longsor: false, kebakaran: true, curanmor: true, perampokan: true }
+                };
+
+                // Fungsi untuk mendapatkan style bencana
+                function getDisasterStyle(feature) {
+                    var rw = feature.properties.rw;
+                    var disaster = disasterData[rw];
+                    
+                    if (!disaster) {
+                        return {
+                            fillColor: '#f8f9fa',
+                            weight: 1,
+                            opacity: 1,
+                            stroke: "#555555",
+                            color: '#6c757d',
+                            dashArray: '2',
+                            fillOpacity: 0.3
+                        };
+                    }
+                    
+                    // Hitung jumlah bencana
+                    var disasterCount = 0;
+                    if (disaster.banjir) disasterCount++;
+                    if (disaster.longsor) disasterCount++;
+                    if (disaster.kebakaran) disasterCount++;
+                    if (disaster.curanmor) disasterCount++;
+                    if (disaster.perampokan) disasterCount++;
+                    
+                    // Tentukan warna berdasarkan jumlah bencana
+                    var fillColor = '#f8f9fa'; // Default abu-abu
+                    if (disasterCount > 0) {
+                        fillColor = '#f44336'; // Merah untuk semua bencana
+                    }
+                    
+                    return {
+                        fillColor: fillColor,
+                        weight: 2,
+                        opacity: 1,
+                        stroke: "#333333",
+                        color: '#ffffff',
+                        dashArray: '2',
+                        fillOpacity: 0.8
+                    };
+                }
+
+                // Fungsi untuk mengubah style peta
+                function updateMapStyle() {
+                    var selectedStyle = document.querySelector('input[name="mapStyle"]:checked').value;
+                    var legend = document.getElementById('disasterLegend');
+                    
+                    if (selectedStyle === 'noColor') {
+                        // Style peta bencana
+                        geojsonLayer.setStyle(getDisasterStyle);
+                        legend.style.display = 'block'; // Tampilkan legend
+                    } else {
+                        // Style dengan warna (default)
+                        geojsonLayer.setStyle(style);
+                        legend.style.display = 'none'; // Sembunyikan legend
+                    }
+                }
+
+                // Event listener untuk radio button
+                document.querySelectorAll('input[name="mapStyle"]').forEach(function(radio) {
+                    radio.addEventListener('change', updateMapStyle);
+                });
             });
         
 
